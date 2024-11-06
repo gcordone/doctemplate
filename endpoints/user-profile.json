@@ -1,0 +1,114 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+      "title": "User Profile API",
+      "version": "1.0.0",
+      "description": "API for retrieving user profile information."
+    },
+    "paths": {
+      "/user/profile": {
+        "get": {
+          "summary": "Retrieve user profile",
+          "description": "Fetches the profile information for the authenticated user.",
+          "operationId": "getUserProfile",
+          "tags": ["User"],
+          "responses": {
+            "200": {
+              "description": "User profile retrieved successfully.",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/UserProfile"
+                  }
+                }
+              }
+            },
+            "401": {
+              "description": "Unauthorized - User is not authenticated.",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/Error"
+                  }
+                }
+              }
+            }
+          },
+          "security": [
+            {
+              "bearerAuth": []
+            }
+          ]
+        }
+      }
+    },
+    "components": {
+      "schemas": {
+        "UserProfile": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "Unique identifier for the user."
+            },
+            "username": {
+              "type": "string",
+              "description": "User's username."
+            },
+            "email": {
+              "type": "string",
+              "format": "email",
+              "description": "User's email address."
+            },
+            "fullName": {
+              "type": "string",
+              "description": "User's full name."
+            },
+            "bio": {
+              "type": "string",
+              "description": "Short bio of the user.",
+              "nullable": true
+            },
+            "location": {
+              "type": "string",
+              "description": "User's location.",
+              "nullable": true
+            },
+            "profilePictureUrl": {
+              "type": "string",
+              "format": "uri",
+              "description": "URL of the user's profile picture.",
+              "nullable": true
+            },
+            "createdAt": {
+              "type": "string",
+              "format": "date-time",
+              "description": "Timestamp of when the user profile was created."
+            }
+          },
+          "required": ["id", "username", "email", "fullName", "createdAt"]
+        },
+        "Error": {
+          "type": "object",
+          "properties": {
+            "code": {
+              "type": "integer",
+              "description": "Error code."
+            },
+            "message": {
+              "type": "string",
+              "description": "Error message."
+            }
+          }
+        }
+      },
+      "securitySchemes": {
+        "bearerAuth": {
+          "type": "http",
+          "scheme": "bearer",
+          "bearerFormat": "JWT"
+        }
+      }
+    }
+  }
+  

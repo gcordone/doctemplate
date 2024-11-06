@@ -1,0 +1,77 @@
+
+/* General styling for three columns */
+.three-column {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+  
+  .column {
+    flex: 1;
+    min-width: 30%;
+    box-sizing: border-box;
+    padding: 10px;
+    border: 1px solid #e0e0e0;
+    border-radius: 5px;
+  }
+  
+  /* Adjustments for smaller screens */
+  @media (max-width: 768px) {
+    .column {
+      min-width: 100%;
+    }
+  }
+/* Main Container for Three Columns */
+.api-container {
+    display: flex;
+    gap: 20px;
+  }
+  
+  /* Left Column - Menu */
+
+  
+  /* Center Column - Details and Tabs */
+  .details-column {
+    width: 70%;
+    padding: 10px;
+  }
+  
+  /* Right Column - Swagger UI */
+  .swagger-column {
+    width: 30%;
+    padding: 10px;
+  }
+  
+  /* Tab Button Styles */
+  .tab button {
+    background-color: #f1f1f1;
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+    margin-right: 5px;
+  }
+  
+  .tab button.active {
+    background-color: #ddd;
+  }
+  
+  /* Tab Content */
+  .tabcontent {
+    display: none;
+  }
+  
+  .tabcontent.active {
+    display: block;
+  }
+  
+  /* Responsive Design for Mobile */
+  @media (max-width: 768px) {
+    .api-container {
+      flex-direction: column;
+    }
+    .menu-column, .details-column, .swagger-column {
+      width: 100%;
+    }
+  }
+  
+  
